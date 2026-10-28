@@ -33,6 +33,7 @@ public class CatAura : MonoBehaviour
         _disc.sprite = CreateDiscSprite();
         _disc.sortingOrder = -1; // under the mice
         _disc.color = Color.clear;
+        _disc.enabled = _detectionVisible;
     }
 
     void Start()
@@ -72,7 +73,12 @@ public class CatAura : MonoBehaviour
         GUI.color = previous;
     }
 
-    public void SetDetectionVisible(bool visible) => _detectionVisible = visible;
+    public void SetDetectionVisible(bool visible)
+    {
+        _detectionVisible = visible;
+        if (_disc != null)
+            _disc.enabled = visible;
+    }
 
     void OnDestroy()
     {
